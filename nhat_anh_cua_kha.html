@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nhật Anh của Kha 💗</title>
+<style>
+:root{--pink:#ff73ad;--deep:#b52f70;--pale:#fff0f7;--ink:#713653}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:linear-gradient(135deg,#ffe4f0,#f7e9ff,#e5f7ff);display:flex;align-items:center;justify-content:center;padding:18px;overflow-x:hidden}
+.float{position:fixed;pointer-events:none;opacity:.5;animation:float 7s linear infinite;font-size:24px}
+@keyframes float{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+.card{width:min(100%,480px);background:#ffffffdf;backdrop-filter:blur(10px);border:2px solid #fff;border-radius:28px;padding:26px 22px;box-shadow:0 18px 55px #cf75a52b;text-align:center;position:relative;overflow:hidden}
+.kicker{color:#d45b96;font-size:.9rem;letter-spacing:2px}
+h1{font-size:clamp(1.7rem,7vw,2.3rem);margin:8px 0;color:var(--deep)}
+.mascot{font-size:76px;display:block;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-9px) rotate(4deg)}}
+p{line-height:1.6}
+.sub{color:#986780}
+.btn{width:100%;border:0;border-radius:16px;padding:14px 16px;margin-top:11px;font-size:1rem;font-weight:750;color:#84345d;background:#ffe4f0;cursor:pointer;transition:transform .15s,background .15s;box-shadow:0 4px 0 #efbad3}
+.btn:hover{transform:translateY(-2px);background:#ffd5e8}
+.primary{background:linear-gradient(90deg,#ff8fbd,#ffb4d2);color:#fff;box-shadow:0 4px 0 #e778a7}
+.primary:hover{background:linear-gradient(90deg,#ff7caf,#ffa3ca)}
+.top{display:flex;justify-content:space-between;gap:10px;font-weight:750;color:#b52f70;margin:18px 0 10px}
+.track{height:9px;border-radius:99px;background:#ffe1ee;overflow:hidden;margin-bottom:22px}
+.bar{height:100%;background:linear-gradient(90deg,#ff77b1,#c68cff);width:20%;transition:width .3s}
+.question{font-size:1.25rem;font-weight:800;margin:18px 0}
+.answer{text-align:left;display:flex;align-items:center;gap:12px}
+.letter{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:#fff;font-weight:800;flex-shrink:0}
+.answer.correct{background:#d8f8e5;box-shadow:0 4px 0 #9ad9b4;color:#176c43}
+.answer.wrong{background:#ffe0e8;box-shadow:0 4px 0 #efb3c4}
+.feedback{font-weight:800;min-height:27px;margin:17px 0 4px}
+.hidden{display:none!important}
+footer{font-size:.8rem;color:#bd79a0;margin-top:22px}
+.burst{animation:pop .45s ease}
+@keyframes pop{0%{transform:scale(.75)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+.leaderboard{margin-top:22px;padding:14px;background:#fff5fa;border:1px solid #ffd5e7;border-radius:18px;text-align:left}
+.leaderboard h2{text-align:center;color:#b52f70;font-size:1.15rem;margin:3px 0 8px}
+.smallNote{text-align:center;font-size:.82rem;margin:4px 0 10px}
+.ranking{padding-left:28px;margin:8px 0 0}
+.ranking li{padding:7px 8px;margin:5px 0;border-radius:10px;background:#fff;overflow-wrap:anywhere}
+.ranking li:first-child{background:#fff0b8;font-weight:800}
+.ranking .empty{list-style:none;margin-left:-28px;text-align:center;color:#986780;background:transparent}
+
+</style>
+</head>
+<body>
+<div class="float" style="left:8%;animation-delay:-2s">💗</div><div class="float" style="left:80%;animation-delay:-5s">✨</div><div class="float" style="left:55%;animation-delay:-1s">🌸</div><div class="float" style="left:28%;animation-delay:-4s">💕</div>
+<main class="card">
+  <div class="kicker">♡ ｡ﾟ•┈୨୧┈•ﾟ｡ ♡</div>
+  <section id="intro">
+    <span class="mascot">🧸</span>
+    <h1>NHẬT ANH CỦA KHA 💗</h1>
+    <h2>Xin chào mấy kid! 🥰</h2>
+    <p class="sub">Anh là Kha, một cách cute thân thiện! 🎀</p>
+    <p>Thử xem mấy kid hiểu Nhật Anh của Kha đến đâu nhaaa 💞</p>
+    <label for="playerName" style="display:block;text-align:left;font-weight:750;margin-top:16px">Tên của bạn là gì nè? 🌸</label>
+    <input id="playerName" maxlength="20" placeholder="Nhập tên của bạn..." autocomplete="nickname" style="width:100%;padding:13px 14px;border:2px solid #ffd0e4;border-radius:14px;font:inherit;margin-top:7px;outline-color:#ff73ad">
+    <button class="btn primary" id="start">Bắt đầu thuiii 💖</button>
+    <section class="leaderboard" aria-live="polite">
+      <h2>🏆 Bảng xếp hạng</h2>
+      <p class="sub smallNote">Lưu điểm trên thiết bị/trình duyệt này nha 💗</p>
+      <ol id="introRanking" class="ranking"></ol>
+    </section>
+  </section>
+  <section id="game" class="hidden">
+    <div class="top"><span id="progress">Câu 1/5</span><span id="score">⭐ Điểm: 0</span></div>
+    <div class="track"><div class="bar" id="bar"></div></div>
+    <span class="mascot" style="font-size:54px">🌷</span>
+    <div class="question" id="question"></div>
+    <div id="answers"></div>
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <button class="btn primary hidden" id="next">Câu tiếp theo ➜</button>
+  </section>
+  <section id="result" class="hidden">
+    <span class="mascot">🎉</span>
+    <h1>Hoàn thành rồi!</h1>
+    <h2 id="finalScore"></h2>
+    <p id="message" class="sub"></p>
+    <section class="leaderboard" aria-live="polite">
+      <h2>🏆 Bảng xếp hạng</h2>
+      <ol id="resultRanking" class="ranking"></ol>
+    </section>
+    <button class="btn primary" id="again">🔄 Chơi lại</button>
+    <button class="btn" id="share">📋 Sao chép lời mời</button>
+    <p class="sub" id="shareNote"></p>
+  </section>
+  <footer>Made with ♡ for Nhật Anh của Kha · 🌸 🧸 💕</footer>
+</main>
+<script>
+const questions=[
+ {q:"Kha thích ăn gì nhất?",a:["🍇 Nho","🍦 Kem"],correct:0},
+ {q:"Kha là người như thế nào?",a:["🤪 Tăng động","😎 Ngầu lòi 🤗"],correct:0},
+ {q:"Kha thích chơi với ai nhất?",a:["👦 Nhật Anh","🐻 White Béo"],correct:1},
+ {q:"Kha thích chơi gì nhất?",a:["⚔️ Liên Quân","🔥 Free Fire"],correct:0},
+ {q:"Kha chơi Liên Quân thích tướng nào nhất?",a:["🦈 Kil'Groth","🖤 Paine"],correct:1}
+];
+let index=0,score=0,answered=false,playerName="";
+const $=id=>document.getElementById(id);
+function show(id){["intro","game","result"].forEach(s=>$(s).classList.toggle("hidden",s!==id))}
+function getScores(){
+ try{return JSON.parse(localStorage.getItem("nhatAnhCuaKhaLeaderboard")||"[]")}catch(e){return []}
+}
+function saveScore(){
+ const scores=getScores();scores.push({name:playerName,score:score,when:Date.now()});
+ scores.sort((a,b)=>b.score-a.score||a.when-b.when);
+ try{localStorage.setItem("nhatAnhCuaKhaLeaderboard",JSON.stringify(scores.slice(0,50)))}catch(e){}
+}
+function drawRanking(id){
+ const list=$(id);list.innerHTML="";const scores=getScores().sort((a,b)=>b.score-a.score||a.when-b.when).slice(0,10);
+ if(!scores.length){const li=document.createElement("li");li.className="empty";li.textContent="Chưa có ai ghi điểm. Bạn chơi đầu tiên nha! 💗";list.appendChild(li);return}
+ scores.forEach((entry,i)=>{const li=document.createElement("li");li.textContent=`${["🥇","🥈","🥉"][i]||`${i+1}.`} ${entry.name} — ${entry.score}/5 điểm`;list.appendChild(li)})
+}
+function render(){
+ answered=false;$("progress").textContent=`Câu ${index+1}/5`;$("score").textContent=`⭐ Điểm: ${score}`;
+ $("bar").style.width=`${(index+1)*20}%`;$("question").textContent=questions[index].q;$("answers").innerHTML="";
+ $("feedback").textContent="";$("next").classList.add("hidden");
+ questions[index].a.forEach((answer,i)=>{
+  const b=document.createElement("button");b.className="btn answer";b.innerHTML=`<span class="letter">${i===0?"A":"B"}</span><span>${answer}</span>`;
+  b.addEventListener("click",()=>choose(i,b));$("answers").appendChild(b);
+ });
+}
+function choose(i,button){
+ if(answered)return;answered=true;const q=questions[index];const buttons=[...$("answers").children];
+ buttons.forEach((b,j)=>{b.disabled=true;if(j===q.correct)b.classList.add("correct");});
+ if(i===q.correct){score++;$("feedback").textContent="Chính xác rồiii! 🎉💗";$("feedback").style.color="#16834a"}
+ else{$("feedback").textContent="Hông đúng mất rùi 🥹";$("feedback").style.color="#c43e77"}
+ $("score").textContent=`⭐ Điểm: ${score}`;$("next").textContent=index===4?"Xem kết quả 🎁":"Câu tiếp theo ➜";$("next").classList.remove("hidden");
+}
+$("start").onclick=()=>{
+ playerName=$("playerName").value.trim();
+ if(!playerName){$("playerName").focus();$("playerName").placeholder="Nhập tên trước nha bạn ơiii 💗";return}
+ index=0;score=0;show("game");render()
+};
+$("next").onclick=()=>{if(index<4){index++;render()}else{
+ saveScore();show("result");$("finalScore").textContent=`${playerName}: ${score}/5 điểm 💖`;
+ $("message").textContent=score===5?"Trời ơiii, bạn hiểu Kha quá rõ luôn! 🥹💗":score>=3?"Bạn hiểu Kha khá rõ đó nha! 🥰💕":"Cùng chơi lại để hiểu Kha hơn nè! 🎀";
+ drawRanking("resultRanking");drawRanking("introRanking")
+}};
+$("again").onclick=()=>{show("intro");index=0;score=0;drawRanking("introRanking")};
+drawRanking("introRanking");
+$("share").onclick=async()=>{const text="Chơi mini game Nhật Anh của Kha 💗";try{await navigator.clipboard.writeText(text);$("shareNote").textContent="Đã sao chép lời mời! Gửi cho bạn bè nha 💕"}catch(e){$("shareNote").textContent="Hãy sao chép địa chỉ trang web từ thanh địa chỉ rồi gửi cho bạn bè nhé!"}};
+</script>
+</body>
+</html>
